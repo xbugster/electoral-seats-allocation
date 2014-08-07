@@ -55,10 +55,20 @@ abstract class AllocationAbstract {
         $this->_quota = $quota;
     }
 
+    /**
+     * @desc    getter. required for different components abstraction
+     *
+     * @return  int
+     */
     public function getTotalSeats() {
         return $this->_totalSeats;
     }
 
+    /**
+     * @desc    getter. required for different components abstraction
+     *
+     * @return  int
+     */
     public function getElectionsData() {
         return $this->_electionData;
     }
