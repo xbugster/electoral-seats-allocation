@@ -21,7 +21,9 @@ $autoloader->register();
 $electoralData = array("A" => 15000, "B" => 5400, "C" => 5500, "D" => 5550);
 $totalSeats = 15;
 
-# Hare Quota Example
+/**
+ * Initialization Examples
+ */
 $calculator = new ElectoralSeatsAllocator(new Quota\HareQuota, $totalSeats, $electoralData);
 $hareResult = $calculator->allocate();
 
@@ -34,10 +36,20 @@ $hagenbachResult = $calculator->allocate();
 $calculator = new ElectoralSeatsAllocator(new Quota\ImperialQuota, $totalSeats, $electoralData);
 $imperialResult = $calculator->allocate();
 
-echo 'Elections Results Based on data sent:' . PHP_EOL;
-echo 'Total seats: ' . $totalSeats . PHP_EOL;
-echo 'Elections Result: ' . PHP_EOL;
+
+/**
+ * Sample Outputs
+ */
+echo 'Elections Results Based on data sent:<br/>';
+echo 'Total seats: ' . $totalSeats . '<br/>';
+echo 'Elections Result: <br/>';
+echo '<pre>';
 var_dump($electoralData);
+echo '</pre>';
+
+echo '-----';
+echo '<h3>Results</h3>';
+echo '-----<br/>';
 
 echo '<h4>Hare Quota Example Result</h4>';
 echo '<pre>';
