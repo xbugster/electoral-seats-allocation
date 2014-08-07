@@ -54,7 +54,7 @@ abstract class AllocationAbstract {
      */
     final public function allocate() {
         $this->_makeTotalVotes();
-        $this->_quotaInstance->getQuota( $this->_electionData, $this );
+        $this->_quotaInstance->getQuota( $this );
         return $this->makeAllocation();
     }
 
