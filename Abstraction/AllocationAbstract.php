@@ -25,10 +25,24 @@ abstract class AllocationAbstract {
     protected $_totalSeats = 0;
 
     /**
+     * @desc    Placeholder for total votes amount
+     *
+     * @var     int
+     */
+    protected $_totalVotes = 0;
+
+    /**
      * @desc    Placeholder for Quota Implementation
      *          Relies on Interface - strict stick to SOLID is a must.
      *
      * @var     null|QuotaAbstract
+     */
+    protected $_quotaInstance = null;
+
+
+    /**
+     * @desc    Quota placeholder, hold amount received from quota
+     * @var     int
      */
     protected $_quota = null;
 
@@ -39,20 +53,34 @@ abstract class AllocationAbstract {
      * @return  array
      */
     final public function allocate() {
-        $this->_quota->getQuota($this->_electionData, $this);
+        $this->_makeTotalVotes();
+        $this->_quotaInstance->getQuota( $this->_electionData, $this );
         return $this->makeAllocation();
     }
 
     abstract protected function makeAllocation();
+
+    protected function _makeTotalVotes()
+    {
+        $this->_totalVotes = array_sum( $this->_electionData );
+    }
 
     /**
      * @desc    setQuota - quota setter, forces to pass QuotaInterface'd instance.
      *
      * @param   QuotaAbstract $quota
      */
-    public function setQuota(QuotaAbstract $quota)
+    public function setQuotaInstance( QuotaAbstract $quota )
     {
-        $this->_quota = $quota;
+        $this->_quotaInstance = $quota;
+    }
+
+    /**
+     * @desc    Quota Setter for quota
+     * @return  int
+     */
+    public function setQuota() {
+        return $this->_quota;
     }
 
     /**
@@ -68,6 +96,15 @@ abstract class AllocationAbstract {
      * @desc    getter. required for different components abstraction
      *
      * @return  int
+     */
+    public function getTotalVotes() {
+        return $this->_totalVotes;
+    }
+
+    /**
+     * @desc    getter. required for different components abstraction
+     *
+     * @return  array
      */
     public function getElectionsData() {
         return $this->_electionData;

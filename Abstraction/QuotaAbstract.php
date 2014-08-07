@@ -12,9 +12,14 @@ abstract class QuotaAbstract {
      * @param   AllocationAbstract $instance
      * @return  integer
      */
-    public function getQuota(AllocationAbstract $instance)
+    final public function getQuota(AllocationAbstract $instance)
     {
-        return $this->_calculateQuota($instance->getTotalSeats(), $instance->getElectionsData());
+        $instance->setQuota(
+            $this->_calculateQuota(
+                $instance->getTotalSeats(),
+                $instance->getTotalVotes()
+            )
+        );
     }
 
     /**
@@ -22,8 +27,8 @@ abstract class QuotaAbstract {
      *          as the quota calculation changes from method to method.
      *
      * @param   int $totalSeats
-     * @param   array $data
+     * @param   int $totalVotes
      * @return  int
      */
-    abstract protected function _calculateQuota($totalSeats, $data);
+    abstract protected function _calculateQuota($totalSeats, $totalVotes);
 } 
