@@ -41,7 +41,7 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
     {
         $remainders = array();
         foreach($this->_electionData as $k => $v) {
-            $remainders[$k] = fmod($v, 1); # fix fmod!
+            $remainders[$k] = fmod($v / $this->_quota, 1);
         }
         arsort($remainders);
         return $remainders;
