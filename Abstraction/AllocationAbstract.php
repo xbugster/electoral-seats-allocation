@@ -102,11 +102,13 @@ abstract class AllocationAbstract {
     }
 
     /**
-     * @desc    getter. required for different components abstraction
+     * @desc    setter. required for different components abstraction
      *
-     * @return  array
+     * @var     array $data
      */
-    public function getElectionsData() {
-        return $this->_electionData;
+    public function setElectionsData($data = array()) {
+        if( (array)$data === $data ) {
+            $this->_electionData = $data;
+        }
     }
 } 

@@ -11,8 +11,21 @@
  */
 
 class ElectoralSeatsAllocator extends AllocationAbstract {
+    public function __construct( QuotaAbstract $quota, $seats = null, $electionData = array() )
+    {
+        $this->setQuotaInstance($quota);
+        $this->setTotalSeats($seats);
+        $this->setElectionsData($electionData);
+    }
+
+    public function setTotalSeats( $seats = null ) {
+        if ( !is_null( $seats ) ) {
+            $this->_totalSeats = $seats;
+        }
+    }
+
     protected function makeAllocation()
     {
-
+        
     }
 } 
