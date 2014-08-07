@@ -31,7 +31,8 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
     {
         $automaticSeats = array();
         foreach($this->_electionData AS $k => $v) {
-            $automaticSeats[$k] = floor($v / $this->_quota);
+            $float = $v / $this->_quota;
+            $automaticSeats[$k] = floor($float);
         }
         return $automaticSeats;
     }
@@ -40,7 +41,7 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
     {
         $remainders = array();
         foreach($this->_electionData as $k => $v) {
-            $remainders[$k] = fmod($v, 1);
+            $remainders[$k] = fmod($v, 1); # fix fmod!
         }
         arsort($remainders);
         return $remainders;
@@ -56,7 +57,11 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
         }
 
         foreach($remainders AS $k => $v) {
-            $spreadedSeats[$k] = ($freeSeats !== 0 ? ++$spreadedSeats[$k] : 0);
+            if($freeSeats < 1) {
+                continue;
+            }
+            ++$spreadedSeats[$k];
+            --$freeSeats;
         }
         return $spreadedSeats;
     }

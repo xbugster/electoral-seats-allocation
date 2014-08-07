@@ -11,6 +11,6 @@ use \Abstraction\QuotaAbstract;
 
 class HagenbachQuota extends QuotaAbstract {
     public function _calculateQuota( $totalSeats, $totalVotes ) {
-        return $totalVotes / ( 1 + $totalSeats );
+        return ceil( $totalVotes / ( 1 + $totalSeats ) );
     }
 }

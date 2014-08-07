@@ -20,7 +20,7 @@ $autoloader->register();
 
 $electoralData = array("A" => 15000, "B" => 5400, "C" => 5500, "D" => 5550);
 $totalSeats = 15;
-$calculator = new ElectoralSeatsAllocator(new Quota\HagenbachQuota, $totalSeats, $electoralData);
+$calculator = new ElectoralSeatsAllocator(new Quota\HareQuota, $totalSeats, $electoralData);
 $seats = $calculator->allocate();
 
 
