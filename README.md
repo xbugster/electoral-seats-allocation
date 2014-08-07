@@ -9,6 +9,7 @@ Note: This is not serious project, just coded for interest.
 ######Inspired by Ronny Rentner
 
 _@todo list_ 
+======
 Split Allocation Abstraction into:
 * lower level abstraction - allocation abstraction
 * higher level abstraction - calculator abstraction
