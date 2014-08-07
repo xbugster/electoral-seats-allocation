@@ -10,8 +10,10 @@
  *       as long as calculations using own ways.
  */
 
+use Abstraction\AllocationAbstract;
+
 class ElectoralSeatsAllocator extends AllocationAbstract {
-    public function __construct( QuotaAbstract $quota, $seats = null, $electionData = array() )
+    public function __construct( Abstraction\QuotaAbstract $quota, $seats = null, $electionData = array() )
     {
         $this->setQuotaInstance($quota);
         $this->setTotalSeats($seats);
@@ -40,7 +42,8 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
         foreach($this->_electionData as $k => $v) {
             $remainders[$k] = fmod($v, 1);
         }
-        return arsort($remainders);
+        arsort($remainders);
+        return $remainders;
     }
 
     protected function _calculateRemainingSeats($remainders, $freeSeats)

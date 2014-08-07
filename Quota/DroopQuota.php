@@ -5,9 +5,12 @@
  * Date: 8/6/14
  * Time: 9:57 PM
  */
+namespace Quota;
+
+use \Abstraction\QuotaAbstract;
 
 class DroopQuota extends QuotaAbstract {
     public function _calculateQuota( $totalSeats, $totalVotes ) {
-        return floor( 1 + ( $totalSeats / ( 1 + $totalSeats ) ) );
+        return 1 + ( $totalVotes / ( 1 + $totalSeats ) );
     }
 }

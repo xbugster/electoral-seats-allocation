@@ -5,9 +5,12 @@
  * Date: 8/6/14
  * Time: 10:17 PM
  */
+namespace Quota;
+
+use \Abstraction\QuotaAbstract;
 
 class ImperialQuota extends QuotaAbstract {
     public function _calculateQuota( $totalSeats, $totalVotes ) {
-        return floor( $totalSeats / ( 2 + $totalSeats ) );
+        return $totalVotes / ( 2 + $totalSeats );
     }
 }
