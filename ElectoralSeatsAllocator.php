@@ -10,8 +10,10 @@
  *       as long as calculations using own ways.
  */
 
+use Abstraction\AllocationAbstract;
+
 class ElectoralSeatsAllocator extends AllocationAbstract {
-    public function __construct( QuotaAbstract $quota, $seats = null, $electionData = array() )
+    public function __construct( Abstraction\QuotaAbstract $quota, $seats = null, $electionData = array() )
     {
         $this->setQuotaInstance($quota);
         $this->setTotalSeats($seats);
@@ -29,7 +31,8 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
     {
         $automaticSeats = array();
         foreach($this->_electionData AS $k => $v) {
-            $automaticSeats[$k] = floor($v / $this->_quota);
+            $float = $v / $this->_quota;
+            $automaticSeats[$k] = floor($float);
         }
         return $automaticSeats;
     }
@@ -38,9 +41,10 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
     {
         $remainders = array();
         foreach($this->_electionData as $k => $v) {
-            $remainders[$k] = fmod($v, 1);
+            $remainders[$k] = fmod($v / $this->_quota, 1);
         }
-        return arsort($remainders);
+        arsort($remainders);
+        return $remainders;
     }
 
     protected function _calculateRemainingSeats($remainders, $freeSeats)
@@ -53,7 +57,11 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
         }
 
         foreach($remainders AS $k => $v) {
-            $spreadedSeats[$k] = ($freeSeats !== 0 ? ++$spreadedSeats[$k] : 0);
+            if($freeSeats < 1) {
+                continue;
+            }
+            ++$spreadedSeats[$k];
+            --$freeSeats;
         }
         return $spreadedSeats;
     }

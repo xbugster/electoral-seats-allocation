@@ -5,6 +5,7 @@
  * Date: 8/6/14
  * Time: 8:44 PM
  */
+namespace Abstraction;
 
 abstract class AllocationAbstract {
 
@@ -77,10 +78,12 @@ abstract class AllocationAbstract {
 
     /**
      * @desc    Quota Setter for quota
-     * @return  int
+     *
+     * @param   $quota
+     * @var     int $quota
      */
-    public function setQuota() {
-        return $this->_quota;
+    public function setQuota($quota) {
+        $this->_quota = $quota;
     }
 
     /**

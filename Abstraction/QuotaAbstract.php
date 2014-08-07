@@ -5,7 +5,7 @@
  * Date: 8/6/14
  * Time: 8:43 PM
  */
-
+namespace Abstraction;
 abstract class QuotaAbstract {
     /**
      * @desc    getQuota - requires to be implemented in concrete class
