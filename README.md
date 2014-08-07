@@ -7,3 +7,8 @@ Based on the article from wiki http://en.wikipedia.org/wiki/Hare-Niemeyer (Large
 Note: This is not serious project, just coded for interest.
 
 ######Inspired by Ronny Rentner
+
+@todo : Split Allocation Abstraction into:
+*lower level abstraction - allocation abstraction
+*higher level abstraction - calculator abstraction
+*decouple
