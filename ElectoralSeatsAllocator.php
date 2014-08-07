@@ -26,6 +26,6 @@ class ElectoralSeatsAllocator extends AllocationAbstract {
 
     protected function makeAllocation()
     {
-        
+
     }
 } 

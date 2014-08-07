@@ -7,7 +7,7 @@
  */
 
 class DroopQuota extends QuotaAbstract {
-    public function _calculateQuota($totalSeats, $totalVotes) {
-        return 1 + ( $totalSeats / ( 1 + $totalSeats ) );
+    public function _calculateQuota( $totalSeats, $totalVotes ) {
+        return floor( 1 + ( $totalSeats / ( 1 + $totalSeats ) ) );
     }
 }

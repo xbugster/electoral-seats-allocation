@@ -7,7 +7,7 @@
  */
 
 class HagenbachQuota extends QuotaAbstract {
-    public function _calculateQuota($totalSeats, $totalVotes) {
-        return $totalSeats / ( 1 + $totalSeats );
+    public function _calculateQuota( $totalSeats, $totalVotes ) {
+        return floor( $totalSeats / ( 1 + $totalSeats ) );
     }
 }

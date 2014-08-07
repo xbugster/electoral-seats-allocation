@@ -7,7 +7,7 @@
  */
 
 class ImperialQuota extends QuotaAbstract {
-    public function _calculateQuota($totalSeats, $totalVotes) {
-        return $totalSeats / ( 2 + $totalSeats );
+    public function _calculateQuota( $totalSeats, $totalVotes ) {
+        return floor( $totalSeats / ( 2 + $totalSeats ) );
     }
 }
