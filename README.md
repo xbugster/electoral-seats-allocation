@@ -10,12 +10,8 @@ Note: This is not serious project, just coded for interest.
 
 _@todo list_ 
 ======
-Split Allocation Abstraction into:
-* lower level abstraction - allocation abstraction
-* higher level abstraction - calculator abstraction
- 
 Decouple
-* decouple
+* decouple more
 
 UnitTest
 * Cover with unit tests (developed in rush w/o "test first")
